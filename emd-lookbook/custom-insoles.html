@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Custom Insoles — Portal Listing Review | EMD Lookbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  :root {
+    --primary-navy: #1A3A5C;
+    --accent-blue:  #2D6BE4;
+    --hike-blue:    #024AE3;
+    --light-bg:     #F4F6F9;
+    --canvas-p:     #F0F2F5;
+    --paper-p:      #FFFFFF;
+    --body-text:    #1A2840;
+    --muted:        #5B6B82;
+    --hairline-p:   rgba(26, 58, 92, 0.10);
+    --hairline-strong-p: rgba(26, 58, 92, 0.18);
+
+    --portal-bg:        #EEF1F5;
+    --portal-surface:   #FFFFFF;
+    --portal-rail:      #1F2A3A;
+    --portal-rail-soft: #2A384B;
+    --portal-rail-text: #C8D0DC;
+    --portal-accent:    #024AE3;
+    --portal-ink:       #131A24;
+    --portal-ink-2:     #38465A;
+    --portal-muted:     #6E7B8F;
+    --portal-line:      #E4E8EE;
+    --portal-row-alt:   #F7F9FC;
+    --portal-eligible-bg: #E5F5EC;
+    --portal-eligible-fg: #1F7A45;
+    --portal-eligible-dot: #2EA868;
+  }
+  img { max-width: 100%; display: block; }
+
+  .pair { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: start; max-width: 1400px; }
+  .col { display: flex; flex-direction: column; }
+
+  .portal {
+    background: var(--portal-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    min-height: 880px;
+  }
+
+  .portal-window {
+    grid-column: 1 / -1;
+    height: 36px;
+    background: #DEE3EB;
+    border-bottom: 1px solid #C8CFD9;
+    display: flex; align-items: center;
+    padding: 0 14px;
+    gap: 8px;
+  }
+  .portal-window .dot { width: 11px; height: 11px; border-radius: 50%; background: #C9CED6; }
+  .portal-window .url {
+    margin-left: 14px;
+    background: #F4F6F9;
+    border: 1px solid #D5DBE4;
+    border-radius: 6px;
+    height: 22px;
+    flex: 1;
+    max-width: 480px;
+    display: flex; align-items: center;
+    padding: 0 10px;
+    font-family: ui-monospace,'SF Mono',Menlo,monospace;
+    font-size: 11px;
+    color: var(--portal-muted);
+  }
+  .portal-window .url::before { content: "🔒"; font-size: 9px; margin-right: 6px; opacity: 0.6; }
+
+  .portal-rail { background: var(--portal-rail); color: var(--portal-rail-text); padding: 22px 0; display: flex; flex-direction: column; }
+  .portal-rail .brand { padding: 0 14px 22px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 14px; }
+  .portal-rail .brand .org-mark {
+    width: 32px; height: 32px;
+    background: var(--portal-accent);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 700; font-size: 11px;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .portal-rail .brand .org-name { font-size: 13px; font-weight: 600; color: #fff; letter-spacing: -0.005em; }
+  .portal-rail .brand .org-sub { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 2px; }
+  .portal-rail .nav-label { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; color: rgba(255,255,255,0.4); padding: 14px 14px 8px; }
+  .portal-rail nav a { display: flex; align-items: center; gap: 8px; padding: 8px 14px; font-size: 12px; color: var(--portal-rail-text); text-decoration: none; line-height: 1.3; }
+  .portal-rail nav a .icn { width: 14px; height: 14px; flex-shrink: 0; border-radius: 3px; background: rgba(255,255,255,0.18); }
+  .portal-rail nav a.active { background: var(--portal-rail-soft); color: #fff; font-weight: 500; border-left: 2px solid var(--portal-accent); padding-left: 18px; }
+  .portal-rail nav a.active .icn { background: var(--portal-accent); }
+  .portal-rail nav a.sub { padding-left: 30px; font-size: 11px; color: rgba(255,255,255,0.65); }
+  .portal-rail nav a.sub.active { color: #fff; font-weight: 500; background: rgba(2,74,227,0.14); border-left: 2px solid var(--portal-accent); padding-left: 28px; }
+
+  .portal-rail .member-card { margin-top: auto; padding: 14px 14px 6px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; gap: 10px; }
+  .portal-rail .member-card .avatar { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #4A6FA5, #2A4A6E); flex-shrink: 0; }
+  .portal-rail .member-card .who { font-size: 11.5px; color: #fff; font-weight: 500; }
+  .portal-rail .member-card .id { font-size: 10px; color: rgba(255,255,255,0.5); font-family: ui-monospace,'SF Mono',Menlo,monospace; margin-top: 1px; }
+
+  .portal-main { background: var(--portal-surface); padding: 0; display: flex; flex-direction: column; }
+  .portal-topbar { display: flex; align-items: center; justify-content: space-between; padding: 14px 32px; border-bottom: 1px solid var(--portal-line); font-size: 12px; color: var(--portal-muted); }
+  .portal-topbar .search { background: var(--portal-row-alt); border: 1px solid var(--portal-line); border-radius: 6px; padding: 6px 12px; width: 280px; font-size: 11.5px; color: var(--portal-muted); }
+  .portal-topbar .top-right { display: flex; align-items: center; gap: 16px; font-size: 11.5px; }
+  .portal-topbar .bell { width: 14px; height: 14px; border-radius: 3px; background: var(--portal-line); }
+
+  .portal-body { padding: 24px 32px 32px; flex: 1; }
+  .portal-crumbs { font-size: 11.5px; color: var(--portal-muted); margin-bottom: 18px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .portal-crumbs .sep { opacity: 0.55; }
+  .portal-crumbs .here { color: var(--portal-ink); font-weight: 500; }
+
+  .portal-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; padding-bottom: 18px; border-bottom: 1px solid var(--portal-line); margin-bottom: 24px; }
+  .portal-title-row { display: flex; align-items: center; gap: 14px; }
+  .portal-title-row .logo-mark { width: 40px; height: 40px; border-radius: 9px; background: #fff; border: 1px solid var(--portal-line); display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+  .portal-title h3 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: var(--portal-ink); line-height: 1.15; }
+  .portal-title .vendor { font-size: 12px; color: var(--portal-muted); margin-top: 2px; }
+
+  .pill-eligible { display: inline-flex; align-items: center; gap: 6px; background: var(--portal-eligible-bg); color: var(--portal-eligible-fg); font-size: 11px; font-weight: 600; letter-spacing: 0.04em; padding: 5px 10px 5px 8px; border-radius: 999px; flex-shrink: 0; }
+  .pill-eligible::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--portal-eligible-dot); }
+
+  .dl { display: grid; grid-template-columns: 1fr; gap: 18px; }
+  .dl .row { display: grid; grid-template-columns: 180px 1fr; gap: 28px; padding: 14px 0; border-bottom: 1px solid var(--portal-line); align-items: start; }
+  .dl .row:last-of-type { border-bottom: none; }
+  .dl dt { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--portal-accent); font-weight: 600; padding-top: 2px; }
+  .dl dd { font-size: 13.5px; line-height: 1.55; color: var(--portal-ink-2); }
+  .dl dd p + p { margin-top: 8px; }
+  .dl dd ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+  .dl dd ul li { position: relative; padding-left: 16px; }
+  .dl dd ul li::before { content: ""; position: absolute; left: 0; top: 9px; width: 5px; height: 5px; background: var(--portal-accent); border-radius: 50%; }
+  .dl dd ol { list-style: none; padding: 0; margin: 0; counter-reset: step; display: flex; flex-direction: column; gap: 8px; }
+  .dl dd ol li { counter-increment: step; position: relative; padding-left: 28px; }
+  .dl dd ol li::before { content: counter(step); position: absolute; left: 0; top: 0; width: 20px; height: 20px; background: #EAF0FB; color: var(--portal-accent); font-size: 10.5px; font-weight: 700; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; }
+  .dl dd a.url-link { color: var(--portal-accent); text-decoration: none; font-weight: 500; border-bottom: 1px solid rgba(2,74,227,0.25); }
+  .dl dd .placeholder { background: #FFF6E0; color: #8A6B12; font-family: ui-monospace,'SF Mono',Menlo,monospace; font-size: 11.5px; padding: 1px 6px; border-radius: 3px; border: 1px dashed #E8C868; }
+  .dl dd .strong { color: var(--portal-ink); font-weight: 600; }
+  .dl dd .subhead { display: block; font-size: 11.5px; font-weight: 700; color: var(--portal-ink); margin-bottom: 6px; letter-spacing: 0.01em; }
+
+  .portal-footer-info { margin-top: 24px; padding: 14px 16px; background: var(--portal-row-alt); border: 1px solid var(--portal-line); border-radius: 8px; display: flex; align-items: flex-start; gap: 12px; font-size: 12px; color: var(--portal-muted); line-height: 1.5; }
+  .portal-footer-info .ico { width: 16px; height: 16px; flex-shrink: 0; border-radius: 50%; background: var(--portal-line); color: var(--portal-muted); font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+
+  .portal-disclaimer { margin-top: 20px; font-size: 11.5px; font-style: italic; color: var(--muted); line-height: 1.5; padding: 0 4px; }
+</style>
+</head>
+<body>
+
+<div class="subpage-bar"><a href="index.html">← Back to Lookbook</a></div>
+<div class="subpage-title">
+  <span class="num">01</span>
+  <h2>Custom Insoles — Portal Listing</h2>
+  <span class="desc">Employee benefits portal listing review</span>
+</div>
+
+<div class="subpage-content">
+
+  <div style="max-width:1400px; margin:0 auto;">
+    <div class="portal">
+            <div class="portal-window">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <div class="url"></div>
+            </div>
+
+            <aside class="portal-rail">
+              <div class="brand">
+                <div class="org-mark">HIKE</div>
+                <div class="org-name">the Company</div>
+                <div class="org-sub">Employee Benefits Portal</div>
+              </div>
+              <div class="nav-label">My Plan</div>
+              <nav>
+                <a href="#"><span class="icn"></span>Dashboard</a>
+                <a href="#"><span class="icn"></span>Coverage &amp; ID Cards</a>
+                <a href="#"><span class="icn"></span>Claims</a>
+                <a href="#" class="active"><span class="icn"></span>Benefits</a>
+                <a href="#" class="sub">Medical</a>
+                <a href="#" class="sub active">Health &amp; Wellness</a>
+                <a href="#" class="sub">Pharmacy</a>
+              </nav>
+              <div class="nav-label">Account</div>
+              <nav>
+                <a href="#"><span class="icn"></span>Documents</a>
+                <a href="#"><span class="icn"></span>Messages</a>
+                <a href="#"><span class="icn"></span>Settings</a>
+              </nav>
+
+              <div class="member-card">
+                <div class="avatar"></div>
+                <div>
+                  <div class="who">Employee</div>
+                  <div class="id">ID • ••••4821</div>
+                </div>
+              </div>
+            </aside>
+
+            <div class="portal-main">
+              <div class="portal-topbar">
+                <div class="search">Search benefits, claims, providers…</div>
+                <div class="top-right">
+                  <span class="bell"></span>
+                  <span>Help</span>
+                  <span>EN</span>
+                </div>
+              </div>
+
+              <div class="portal-body">
+                <div class="portal-crumbs">
+                  <span>Benefits</span><span class="sep">/</span>
+                  <span>Health &amp; Wellness</span><span class="sep">/</span>
+                  <span class="here">Custom Insoles</span>
+                </div>
+
+                <div class="portal-header">
+                  <div class="portal-title-row">
+                    <div class="logo-mark"><span style="font-family:Inter,sans-serif;font-weight:800;font-size:11px;letter-spacing:-0.02em;color:#024AE3;">HIKE</span></div>
+                    <div class="portal-title">
+                      <h3>Custom Insoles</h3>
+                      <div class="vendor">Provided by the Company</div>
+                    </div>
+                  </div>
+                  <span class="pill-eligible">Eligible</span>
+                </div>
+
+                <dl class="dl">
+                  <div class="row">
+                    <dt>Benefit Summary</dt>
+                    <dd>
+                      <p>Hike Medical custom insoles are now available through your employee benefits at exclusive pricing.</p>
+                      <p>Foot pain rarely stops you all at once. It just talks you out of things, one at a time: the walk after dinner, the workout you keep meaning to restart, weekend plans that used to sound fun. Custom insoles are designed to your exact foot geometry, helping you offload the pressure of standing and walking. Your body can stop working around the problem and you can go back to doing all the things you love.</p>
+                    </dd>
+                  </div>
+
+                  <div class="row">
+                    <dt>Coverage</dt>
+                    <dd>
+                      <p>Eligible employees have access to perfect-fitting insoles exclusively through the Company's partnership with Hike Medical.</p>
+                      <p><span class="subhead">If you're enrolled in the Company's medical plan (Blue Cross Blue Shield)</span>Each year, your coverage includes 2 pairs of custom insoles at $120 each. Eligible dependents on the plan also have access to the same benefit. Depending on your deductible and coinsurance, you may pay some or all of that $120 per pair, with the rest billed to insurance. See the FAQ below for full details.</p>
+                      <p><span class="subhead">If you're not enrolled in the Company's medical plan</span>You still have access to Hike custom insoles through the Company's partnership, at $120 per pair, a fraction of the $500 to $1,000 you'd pay through a specialist. Paid directly to Hike, with no claims or paperwork required.</p>
+                    </dd>
+                  </div>
+
+                  <div class="row">
+                    <dt>How to Redeem</dt>
+                    <dd>5-minute smartphone scan at <span class="placeholder">[link]</span>. No appointments needed.</dd>
+                  </div>
+
+                  <div class="row">
+                    <dt>Delivery Time</dt>
+                    <dd>About 2 weeks to your home.</dd>
+                  </div>
+
+                  <div class="row">
+                    <dt>What's Included</dt>
+                    <dd>
+                      <ul>
+                        <li>2 pairs a year covered for plan members and their eligible dependents</li>
+                        <li>2 pairs a year available to non-plan employees directly through Hike, at $120 per pair</li>
+                        <li>Made in the U.S. and shipped to your home</li>
+                        <li>Amazing fit guarantee: if it's not right, we rebuild it at no extra charge</li>
+                        <li>No doctor visits or paperwork needed</li>
+                        <li>Additional pairs available at member pricing</li>
+                        <li>Support available by email, phone, text and in-portal chat</li>
+                      </ul>
+                    </dd>
+                  </div>
+
+                  <div class="row">
+                    <dt>How It Works</dt>
+                    <dd>
+                      <p><span class="subhead">Plan members</span></p>
+                      <ol>
+                        <li><span class="strong">Verify.</span> Enter your Blue Cross Blue Shield ID. Hike checks your plan in real time.</li>
+                        <li><span class="strong">Scan.</span> Capture your feet in a 5-minute scan from your phone, whenever and wherever works best for you.</li>
+                        <li><span class="strong">Confirm.</span> See your personalized cost estimate based on your plan, then a $1 hold is placed on your card while your claim processes. This is not a charge. Once Blue Cross Blue Shield finalizes your claim, typically within 7 days, you're charged only the confirmed amount.</li>
+                        <li><span class="strong">Delivered.</span> Your custom insoles ship to your home in about 2 weeks. Hike builds and ships them while your claim processes in the background, so your order is never delayed.</li>
+                      </ol>
+                      <p style="margin-top:14px;"><span class="subhead">Non-plan members</span></p>
+                      <ol>
+                        <li><span class="strong">Verify.</span> Enter your employee ID.</li>
+                        <li><span class="strong">Scan.</span> Capture your feet in a 5-minute scan from your phone, whenever and wherever works best for you.</li>
+                        <li><span class="strong">Pay.</span> Pay $120 directly to Hike.</li>
+                        <li><span class="strong">Delivered.</span> Your custom insoles ship to your home in about 2 weeks, built just for you.</li>
+                      </ol>
+                    </dd>
+                  </div>
+
+                  <div class="row">
+                    <dt>Documentation Required</dt>
+                    <dd>
+                      <p><span class="strong">Plan members:</span> your Blue Cross Blue Shield ID card.</p>
+                      <p style="margin-top:8px;"><span class="strong">Non-plan members:</span> your employee ID.</p>
+                    </dd>
+                  </div>
+
+                  <div class="row">
+                    <dt>FAQ</dt>
+                    <dd>
+                      <p><span class="subhead">Who is eligible?</span>All benefits-eligible employees at the Company, whether or not you're enrolled in the Company's Blue Cross Blue Shield medical plan. Eligible dependents on the plan are included too. Employees based outside the U.S., including Puerto Rico, are not eligible to participate.</p>
+                      <p style="margin-top:12px;"><span class="subhead">How is this different from store-bought insoles?</span>Drugstore inserts are molded once, for an average foot, and sold to millions of different feet. They flatten out fast and were never shaped for you in the first place.</p>
+                      <p style="margin-top:12px;"><span class="subhead">How is this different from getting custom insoles through a specialist?</span>Getting truly custom insoles through a specialist means $500 to $1,000 and months of waiting. Hike delivers the same clinical-grade result from a 5-minute scan, delivered to your door in about two weeks.</p>
+                      <p style="margin-top:12px;"><span class="subhead">How does this work with my Blue Cross Blue Shield plan?</span>Hike submits claims directly to Blue Cross Blue Shield. Like other covered services, your deductible and coinsurance may apply.</p>
+                      <p style="margin-top:12px;"><span class="subhead">Will I know my cost before I order?</span>Yes. Hike checks your plan in real time and shows you a cost estimate at checkout. A $1 hold is placed on your card, not a charge. The final amount is confirmed once Blue Cross Blue Shield processes the claim, typically within a week.</p>
+                      <p style="margin-top:12px;"><span class="subhead">What determines what I pay?</span>Two things: your deductible (what you pay before your plan starts contributing) and your coinsurance (the percentage you share after that). Here's how those apply to a $120 pair:</p>
+                      <ul style="margin-top:6px;">
+                        <li><span class="strong">Already met your deductible and out-of-pocket max?</span> You pay nothing. Your plan covers the full $120.</li>
+                        <li><span class="strong">Met your deductible, but not your out-of-pocket max?</span> You pay your coinsurance share. For example, at 20% coinsurance, you'd pay $24 and your plan covers the remaining $96.</li>
+                        <li><span class="strong">Haven't met your deductible yet?</span> You pay the full $120, and it counts toward your deductible.</li>
+                        <li><span class="strong">Partway through your deductible?</span> You pay what's left on your deductible, plus coinsurance on the rest. For example, with $100 left on your deductible: you'd pay that $100, plus 20% of the remaining $20 ($4), for $104 total. Your plan covers the last $16.</li>
+                      </ul>
+                      <p style="margin-top:12px;"><span class="subhead">Will my order be delayed while my claim processes?</span>No. Hike ships your insoles as planned while the claim processes in the background.</p>
+                      <p style="margin-top:12px;"><span class="subhead">What if I'm not enrolled in the Company's medical plan?</span>Custom insoles are still available to you directly through Hike, at $120. No paperwork.</p>
+                      <p style="margin-top:12px;"><span class="subhead">Can my dependents use this benefit too?</span>Yes, covered dependents under your Blue Cross Blue Shield plan are eligible.</p>
+                      <p style="margin-top:12px;"><span class="subhead">Can I use my HSA?</span>Yes. HSA funds typically cover custom insoles as an eligible medical expense. Confirm your plan's specifics with your HSA administrator.</p>
+                      <p style="margin-top:12px;"><span class="subhead">Can I use my FSA?</span>It depends on your FSA plan and how your administrator defines eligible expenses. Confirm with your FSA administrator before completing your purchase.</p>
+                    </dd>
+                  </div>
+
+                  <div class="row">
+                    <dt>Benefit Period</dt>
+                    <dd>Effective <span class="placeholder">January 1, 2027</span></dd>
+                  </div>
+
+                  <div class="row">
+                    <dt>Contact</dt>
+                    <dd>Need help using your Hike benefit? Email Hike User Support at <span class="strong">support@hikemedical.com</span>. If you believe you're ineligible in error, contact the Company's HR4U line at <a class="url-link" href="tel:+18554445678">+1 855.444.5678</a> (Monday-Friday, 9am to 6pm ET).</dd>
+                  </div>
+                </dl>
+
+                <p class="portal-disclaimer">
+                  Eligibility to receive Hike Custom Insoles is subject to the agreement between your organization and Hike Medical, including your current employment and/or membership status. Questions? Contact your benefits administrator or support@hikemedical.com.
+                </p>
+              </div>
+            </div>
+          </div>
+    </div>
+
+  <div id="comments-root" data-page="custom-insoles"></div>
+</div>
+
+<script src="js/comments-config.js"></script>
+<script src="js/comments.js"></script>
+<script src="js/nav.js"></script>
+</body>
+</html>
