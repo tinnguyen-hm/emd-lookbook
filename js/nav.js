@@ -1,6 +1,10 @@
 (function () {
   var pages = [
-    { file: 'custom-insoles.html', label: 'Custom Insoles — Portal Listing' }
+    { file: 'newsletter.html', label: 'Newsletter' },
+    { file: 'website-listing.html', label: 'Website Listing' },
+    { file: 'custom-insoles.html', label: 'Benefit Portal' },
+    { file: 'flyer.html', label: 'Flyer' },
+    { file: 'powerpoint.html', label: 'PowerPoint' }
     // add one entry per new asset page, in hub display order
   ];
 

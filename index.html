@@ -2,28 +2,45 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>EMD × Hike Medical — Asset Lookbook</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EMD Q4 2026 Pre-Launch Campaign — Lookbook</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #F9FAF9; font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; }
+  a { text-decoration: none; }
+  .card { display:flex; flex-direction:column; gap:6px; background:#fff; border-radius:14px; padding:22px 24px; box-shadow:0 6px 16px rgba(0,20,66,0.06); border:1px solid rgba(0,0,0,0.06); transition:box-shadow 0.2s, transform 0.2s; }
+  .card:hover { box-shadow:0 14px 32px rgba(0,20,66,0.14); transform:translateY(-2px); }
+  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  @media (max-width: 900px) { .grid { grid-template-columns:repeat(2,1fr); } }
+  @media (max-width: 620px) { .grid { grid-template-columns:1fr; } }
+  .tag { font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:#004BE0; }
+  .name { font-size:19px; font-weight:600; color:#004BE0; letter-spacing:-0.01em; }
+  .desc { font-size:13px; color:#515151; line-height:1.4; }
+</style>
 </head>
 <body>
-  <div class="hub-shell">
-    <div class="hub-header">
-      <div class="eyebrow">EMD × Hike Medical</div>
-      <h1>Asset Lookbook</h1>
-      <p>Review each campaign asset below and leave feedback directly on the page — no login required.</p>
-    </div>
 
-    <div class="card-grid">
-      <a class="asset-card" href="custom-insoles.html">
-        <span class="num">01</span>
-        <h3>Custom Insoles — Portal Listing</h3>
-        <p>Employee benefits portal listing review for the Custom Insoles benefit.</p>
-      </a>
+<div style="max-width:1240px; margin:0 auto; padding:64px 40px 100px;">
+
+  <div style="margin-bottom:56px;">
+    <div style="font-size:13px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#004BE0; margin-bottom:12px;">Hike Medical &middot; EMD Engagement Campaign</div>
+    <h1 style="margin:0 0 12px; font-weight:600; font-size:46px; letter-spacing:-0.02em; color:#004BE0;">Q4 2026 Pre-Launch Campaign</h1>
+    <p style="margin:0; font-size:15px; color:#515151; max-width:560px;">Review each asset below and leave feedback directly on the page — no login required.</p>
+  </div>
+
+  <div>
+    <h2 style="font-weight:600; font-size:22px; color:#004BE0; margin:0 0 20px;">Broad Awareness</h2>
+    <div class="grid">
+      <a href="newsletter.html"><div class="card"><span class="tag">01</span><span class="name">Newsletter</span><span class="desc">Member benefits newsletter article, 2 pages</span></div></a>
+      <a href="website-listing.html"><div class="card"><span class="tag">02</span><span class="name">Website Listing</span><span class="desc">Custom Insoles catalog listing, hikemedical.com</span></div></a>
+      <a href="custom-insoles.html"><div class="card"><span class="tag">03</span><span class="name">Benefit Portal</span><span class="desc">Employee benefits portal listing review</span></div></a>
+      <a href="flyer.html"><div class="card"><span class="tag">04</span><span class="name">Flyer</span><span class="desc">"Hike at a Glance" print flyer</span></div></a>
+      <a href="powerpoint.html"><div class="card"><span class="tag">05</span><span class="name">PowerPoint</span><span class="desc">"EMD Launch Slides" deck, 6 slides</span></div></a>
     </div>
   </div>
+
+</div>
 </body>
 </html>
