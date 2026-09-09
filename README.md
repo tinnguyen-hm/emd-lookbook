@@ -2,7 +2,7 @@
 
 A GitHub Pages review site for EMD × Hike Medical campaign assets. Every asset gets its own page, reviewers can leave feedback with no login, and it can be updated later without any local dev setup.
 
-Live site: `https://<your-github-username>.github.io/emd-lookbook/`
+Live site: `https://tinnguyen-hm.github.io/emd-lookbook/`
 
 ## Adding a new asset page
 
