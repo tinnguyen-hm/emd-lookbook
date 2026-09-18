@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EMD Landing Page — Wireframe Mockup v6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #FBFAF9;
+    --ink: #0A0024;
+    --body: #33313A;
+    --muted: #6B6F76;
+    --accent: #004BE0;
+    --accent-tint: #E9F0FF;
+    --line: rgba(10,0,36,0.09);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); font-family: 'DM Sans', sans-serif; color: var(--body); }
+  .page { max-width: 1180px; margin: 0 auto; }
+  section { padding: 76px 56px; }
+  .hairline { border-bottom: 1px solid var(--line); }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin: 0 0 18px; }
+
+  /* topbar - left aligned like hikemedical.com, not centered */
+  .topbar { display: flex; align-items: center; justify-content: space-between; padding: 22px 56px; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: var(--bg); z-index: 100; }
+  .topbar .lockup { display: flex; align-items: center; gap: 16px; }
+  .topbar .lockup svg { height: 38px; width: auto; display: block; }
+  .topbar .lockup .div { width: 1px; height: 22px; background: var(--line); }
+  .topbar .lockup img { height: 46px; width: auto; display: block; }
+  .topbar .cta-mini { display: inline-flex; align-items: center; gap: 6px; background: var(--accent); color: #fff; font-weight: 500; font-size: 13.5px; padding: 10px 20px; border-radius: 999px; text-decoration: none; white-space: nowrap; }
+
+  /* hero - two column, left aligned, like homepage */
+  .hero { padding: 72px 56px 56px; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: center; }
+  .hero h1 { font-size: 46px; font-weight: 300; letter-spacing: -0.015em; line-height: 1.14; color: var(--ink); margin: 0 0 22px; }
+  .hero h1 b { font-weight: 500; }
+  .hero p.sub { font-size: 17px; color: var(--body); max-width: 480px; margin: 0 0 30px; line-height: 1.55; }
+  .cta { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #fff; font-weight: 500; font-size: 15.5px; padding: 15px 30px; border-radius: 999px; text-decoration: none; }
+  .cta-note { font-size: 13px; color: var(--muted); margin: 16px 0 0; }
+  .hero-img img { width: 100%; height: auto; display: block; }
+
+  /* trust band - full bleed accent color, connects hero to the rest with a rhythm break */
+  .stats { display: grid; grid-template-columns: repeat(3,1fr); max-width: 680px; margin: 0 auto 36px; }
+  .stat { padding: 0 20px; border-left: 1px solid rgba(255,255,255,0.22); }
+  .stat:first-child { border-left: none; }
+  .stat-num { font-size: 52px; font-weight: 300; color: #fff; letter-spacing: -0.02em; }
+  .stat-lbl { font-size: 13.5px; color: #D8E3FF; margin-top: 4px; }
+
+  /* audience split */
+  .split-head { text-align: center; margin-bottom: 40px; }
+  .split-head h2 { font-size: 32px; font-weight: 400; color: var(--ink); letter-spacing: -0.01em; margin: 0; }
+  .segments { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .seg-panel { padding: 44px 46px; border-radius: 16px; }
+  .seg-panel.primary { background: #F5F4F1; }
+  .seg-panel.secondary { background: var(--accent); color: #fff; }
+  .seg-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.7; margin-bottom: 14px; }
+  .seg-panel.primary .seg-tag { color: var(--accent); }
+  .seg-panel.secondary .seg-tag { color: #BFD4FF; }
+  .seg-panel h3 { font-size: 26px; font-weight: 600; margin: 0 0 22px; line-height: 1.28; }
+  .seg-panel.primary h3 { color: var(--accent); }
+  .seg-panel.secondary h3 { color: #fff; }
+  .seg-list { list-style: none; margin: 0 0 22px; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .seg-list li { position: relative; padding-left: 22px; font-size: 14.5px; line-height: 1.55; }
+  .seg-list li::before { content: ""; position: absolute; left: 0; top: 8px; width: 7px; height: 7px; border-radius: 50%; }
+  .seg-panel.primary .seg-list li::before { background: var(--accent); }
+  .seg-panel.secondary .seg-list li::before { background: #A9D9E6; }
+  .seg-panel.primary .seg-list { color: var(--body); }
+  .seg-panel.secondary .seg-list { color: rgba(255,255,255,0.92); }
+  .seg-panel .link { font-size: 13.5px; font-weight: 700; text-decoration: underline; cursor: pointer; background: none; border: none; padding: 0; font-family: inherit; }
+  .seg-panel.primary .link { color: var(--accent); }
+  .seg-panel.secondary .link { color: #fff; }
+
+  /* resource tab module - mirrors homepage's Intelligence/Clinical/Lab pill switcher */
+  .resource-head { text-align: center; margin-bottom: 36px; }
+  .resource-head h2 { font-size: 32px; font-weight: 400; color: var(--ink); letter-spacing: -0.01em; margin: 0; }
+  .tab-switcher { display: flex; justify-content: center; gap: 4px; background: #F0EEEA; border-radius: 999px; padding: 6px; max-width: 560px; margin: 0 auto 44px; }
+  .tab-btn { flex: 1; background: transparent; border: none; padding: 12px 18px; font-family: inherit; font-size: 14px; font-weight: 500; color: var(--muted); border-radius: 999px; cursor: pointer; white-space: nowrap; }
+  .tab-btn.active { background: #fff; color: var(--ink); box-shadow: 0 4px 14px rgba(10,0,36,0.08); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* steps (inside How It Works tab) */
+  .steps-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .steps-col h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin: 0 0 24px; }
+  .step { display: grid; grid-template-columns: 44px 1fr; gap: 14px; margin-bottom: 22px; }
+  .step .num { font-size: 26px; font-weight: 300; color: var(--accent); opacity: 0.5; line-height: 1; }
+  .step .txt { font-size: 14px; line-height: 1.55; color: var(--body); padding-top: 3px; }
+  .step .txt b { color: var(--ink); font-weight: 500; }
+
+  /* comparison table (inside How Hike Compares tab) */
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  thead td { padding: 12px 8px; font-weight: 600; color: var(--muted); border-bottom: 3px solid var(--accent); }
+  thead td:nth-child(2) { color: var(--accent); }
+  tbody td { padding: 12px 8px; border-bottom: 1px solid var(--line); color: var(--muted); }
+  tbody td:first-child { color: var(--ink); font-weight: 500; }
+  tbody td:nth-child(2) { color: var(--accent); font-weight: 600; }
+  .mobile-cards { display: none; }
+  .m-card:first-child { border-color: var(--accent); border-width: 2px; }
+  .m-card:first-child .m-title { color: var(--accent); }
+
+  /* faq (inside FAQs tab) */
+  .faq-group-label { font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 26px 0 12px; scroll-margin-top: 24px; }
+  .faq-group-label:first-child { margin-top: 0; }
+  .accordion-row { border-bottom: 1px solid var(--line); }
+  .accordion-head { display: flex; justify-content: space-between; align-items: center; padding: 18px 4px; font-weight: 500; font-size: 15px; color: var(--ink); cursor: pointer; }
+  .accordion-head span { color: var(--accent); font-weight: 300; font-size: 20px; }
+  .accordion-body { display: none; padding: 0 4px 20px; font-size: 13.5px; line-height: 1.6; color: var(--body); }
+  .accordion-body ul { padding-left: 18px; margin: 10px 0 0; }
+  .accordion-body li { margin-bottom: 6px; }
+  .accordion-row.open .accordion-body { display: block; }
+  .accordion-row.open .accordion-head span { transform: rotate(45deg); }
+  .video-embed { position: relative; width: 100%; max-width: 520px; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; background: #000; margin-top: 12px; }
+  .video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+  .disclaimer { font-size: 11px; color: var(--muted); text-align: center; max-width: 760px; margin: 0 auto; line-height: 1.5; }
+
+  @media (max-width: 640px) {
+    section { padding: 48px 22px; }
+    .topbar { padding: 16px 22px; }
+    .topbar .lockup svg { height: 28px; }
+    .topbar .lockup img { height: 34px; }
+    .topbar .cta-mini { padding: 8px 14px; font-size: 12px; }
+    .hero { padding: 40px 22px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+    .hero h1 { font-size: 28px; }
+    .hero p.sub { font-size: 15.5px; max-width: none; }
+    .stats { grid-template-columns: 1fr; gap: 20px; max-width: 320px; }
+    .stat { border-left: none; border-top: 1px solid rgba(255,255,255,0.22); padding: 20px 0 0; }
+    .stat:first-child { border-top: none; padding-top: 0; }
+    .segments { grid-template-columns: 1fr; border-radius: 16px; }
+    .tab-switcher { flex-direction: column; max-width: 280px; }
+    .steps-wrap { grid-template-columns: 1fr; gap: 30px; }
+    .desktop-table { display: none; }
+    .mobile-cards { display: block; }
+    .m-card { border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; }
+    .m-card .m-title { font-weight: 500; font-size: 13.5px; margin-bottom: 8px; color: var(--ink); }
+    .m-row { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; border-bottom: 1px solid var(--line); }
+    .m-row:last-child { border-bottom: none; }
+  }
+
+  /* --- v5 additions --- */
+  /* --- Why Hike: scrapbook tile layout, image centered, others arranged around it --- */
+  .e-wrap { padding: 64px 56px 80px; }
+  .e-flow { max-width: 1000px; margin: 0 auto; position: relative; height: 640px; }
+  .e-tile { position: absolute; border-radius: 18px; padding: 26px; box-sizing: border-box; box-shadow: 0 6px 16px rgba(10,0,36,0.07); }
+  .e-tile-scan { background: #F3F2F1; width: 280px; height: 350px; left: 312px; top: 77px; z-index: 3; display: flex; align-items: center; justify-content: center; }
+  .e-tile-scan img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+  .e-tile-scan .e-placeholder-tag { font-size: 10.5px; font-style: italic; color: var(--muted); text-align: center; line-height: 1.5; }
+  .e-tile-stat66 { background: linear-gradient(180deg, rgba(10,0,36,0) 25%, rgba(10,0,36,0.55) 60%, rgba(10,0,36,0.92) 100%), url('https://cdn.prod.website-files.com/696399c9f54a10fcd0b6cb3f/6aac9d6e7ec5cf2550a89754_BrandImage3.png') center/cover no-repeat; width: 240px; height: 260px; left: 40px; top: 40px; z-index: 2; display: flex; flex-direction: column; justify-content: flex-end; }
+  .e-tile-stat66 .e-photo-stat { font-size: 30px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .e-tile-stat66 .e-photo-label { font-size: 11px; color: rgba(255,255,255,0.6); line-height: 1.5; }
+  .e-tile-problem, .e-tile-solution { background: #fff; border: 1px solid var(--line); }
+  .e-tile-problem { width: 300px; left: 650px; top: 20px; z-index: 2; }
+  .e-tile-solution { width: 320px; left: 20px; top: 400px; z-index: 2; }
+  .e-tile-problem .e-eyebrow, .e-tile-solution .e-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin: 0 0 10px; }
+  .e-tile-problem p, .e-tile-solution p { font-size: 14px; font-weight: 400; color: var(--body); line-height: 1.65; margin: 0; }
+  .e-tile-quote { background: var(--ink); width: 340px; left: 668px; top: 350px; z-index: 2; }
+  .e-quote-mark { font-family: 'Newsreader', serif; font-size: 30px; line-height: 1; color: #fff; opacity: 0.35; display: block; margin-bottom: 4px; }
+  .e-tile-quote blockquote { font-family: 'Newsreader', serif; font-style: italic; font-size: 15.5px; line-height: 1.5; color: #fff; margin: 0 0 10px; }
+  .e-tile-quote .who { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.06em; }
+  .e-tile-stats { background: #F0EEEA; width: 260px; left: 370px; top: 460px; z-index: 4; display: flex; }
+  .e-tile-stats > div { flex: 1; }
+  .e-tile-stats > div + div { border-left: 1px solid var(--line); margin-left: 22px; padding-left: 22px; }
+  .e-tile-stats .num { font-size: 30px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
+  .e-tile-stats .lbl { font-size: 11.5px; color: var(--muted); margin-top: 4px; line-height: 1.35; }
+  .e-survey { font-size: 10.5px; color: var(--muted); max-width: 1000px; margin: 24px auto 0; line-height: 1.5; }
+  @media (max-width: 900px) {
+    .e-flow { position: static; height: auto; max-width: none; display: flex; flex-direction: column; gap: 16px; }
+    .e-tile { position: static !important; transform: none !important; width: 100% !important; left: auto !important; top: auto !important; box-shadow: none; }
+  }
+
+  .faq-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .faq-col-stacked .faq-group-label:nth-child(1) { margin-top: 0; }
+  .faq-col-stacked .faq-group-label.stacked-second { margin-top: 34px; }
+
+  @media (max-width: 640px) {
+    .faq-columns { grid-template-columns: 1fr; gap: 8px; }
+    .faq-col-stacked .faq-group-label.stacked-second { margin-top: 26px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="topbar">
+    <div class="lockup">
+      <svg viewBox="0 0 315 80"><g><path fill="#16BECE" d="M148,4C148,4,148,4,148,4c0,0,0.1,0.1,0.1,0.1C148.1,4,148.1,4,148,4"/><path fill="#542F8F" d="M171.2,17.9c0,0.3,0,0.6,0.1,0.9c0.4,1.8,1.9,3,3.7,3c2.6,0,4.1-2.2,4.1-5.4c0-2.8-1.4-5.2-4.1-5.2c-1.7,0-3.2,1.2-3.7,3.1c-0.1,0.3-0.1,0.7-0.1,1.1V17.9z M168.8,3h2.4v8.8h0.1c0.9-1.6,2.4-2.5,4.6-2.5c3.4,0,5.8,2.9,5.8,7.1c0,5-3.1,7.5-6.1,7.5c-2,0-3.5-0.8-4.6-2.6h-0.1l-0.1,2.3h-2.1c0.1-1,0.1-2.4,0.1-3.6V3z"/><path fill="#542F8F" d="M193.4,15.2c0-1.6-0.6-4.1-3.4-4.1c-2.5,0-3.6,2.3-3.8,4.1H193.4z M186.1,17c0.1,3.4,2.2,4.9,4.7,4.9c1.8,0,2.9-0.3,3.8-0.7L195,23c-0.9,0.4-2.4,0.9-4.5,0.9c-4.2,0-6.7-2.9-6.7-7.1c0-4.2,2.4-7.5,6.4-7.5c4.5,0,5.6,4,5.6,6.6c0,0.5,0,0.9-0.1,1.2H186.1z"/><path fill="#542F8F" d="M198.8,13.3c0-1.5,0-2.6-0.1-3.8h2.2l0.1,2.3h0.1c0.7-1.3,2.2-2.6,4.5-2.6c1.9,0,4.8,1.2,4.8,6v8.3h-2.5v-8.1c0-2.3-0.8-4.1-3.1-4.1c-1.6,0-2.9,1.2-3.3,2.6c-0.1,0.3-0.2,0.8-0.2,1.2v8.4h-2.5V13.3z"/><path fill="#542F8F" d="M223,15.2c0-1.6-0.6-4.1-3.4-4.1c-2.5,0-3.6,2.3-3.8,4.1H223z M215.8,17c0.1,3.4,2.2,4.9,4.7,4.9c1.8,0,2.9-0.3,3.8-0.7l0.4,1.8c-0.9,0.4-2.4,0.9-4.5,0.9c-4.2,0-6.7-2.9-6.7-7.1c0-4.2,2.4-7.5,6.4-7.5c4.5,0,5.6,4,5.6,6.6c0,0.5,0,0.9-0.1,1.2H215.8z"/><path fill="#542F8F" d="M228.7,23.5V11.5h-1.9V9.5h1.9V8.7c0-3.7,2.1-6.1,5.9-6.1c1.3,0,2.8,0.4,3.5,0.9l-0.7,1.9c-0.6-0.4-1.7-0.8-2.9-0.8c-2.6,0-3.4,1.9-3.4,4.1v0.7h7.9v14h-2.5V11.5h-5.4v12.1H228.7z"/><path fill="#542F8F" d="M246.1,6.2v3.4h3.5v1.9h-3.5V19c0,1.7,0.5,2.7,1.9,2.7c0.7,0,1.1-0.1,1.4-0.2l0.1,1.9c-0.5,0.2-1.2,0.3-2.2,0.3c-1.2,0-2.1-0.4-2.7-1.1c-0.7-0.8-1-2-1-3.7v-7.6h-2.1V9.5h2.1V6.9L246.1,6.2z"/><path fill="#542F8F" d="M252.1,21c0.8,0.5,2,1,3.3,1c1.8,0,2.6-0.9,2.6-2.1c0-1.2-0.7-1.9-2.5-2.5c-2.5-0.9-3.6-2.3-3.6-4c0-2.3,1.8-4.1,4.7-4.1c1.4,0,2.6,0.4,3.3,0.9l-0.6,1.9c-0.5-0.3-1.5-0.8-2.8-0.8c-1.5,0-2.2,0.9-2.2,1.9c0,1.2,0.8,1.7,2.6,2.4c2.3,0.9,3.6,2.1,3.6,4.2c0,2.5-1.9,4.2-5.1,4.2c-1.5,0-2.9-0.4-3.8-1L252.1,21z"/><path fill="#542F8F" d="M270.4,16.4v-6.3c0-1,0-2,0.1-3h-0.1c-0.6,1.1-1,1.9-1.5,2.8l-4.5,6.4v0.1H270.4z M270.4,23.5v-5.2h-8.5v-1.7l8.1-12h2.7v11.7h2.6v2h-2.6v5.2H270.4z"/><path fill="#542F8F" d="M278,13.3c0-1.5-0.1-2.6-0.1-3.8h2.2l0.1,2.3h0.1c0.8-1.3,2-2.6,4.3-2.6c1.8,0,3.2,1.2,3.8,2.8h0.1c0.4-0.8,1-1.4,1.5-1.8c0.8-0.6,1.7-1,3-1c1.8,0,4.5,1.2,4.5,6.1v8.2H295v-7.9c0-2.7-1-4.3-2.9-4.3c-1.4,0-2.5,1.1-2.9,2.3c-0.1,0.4-0.2,0.8-0.2,1.3v8.7h-2.4v-8.4c0-2.2-1-3.8-2.8-3.8c-1.5,0-2.7,1.3-3.1,2.5c-0.1,0.3-0.2,0.8-0.2,1.2v8.4H278V13.3z"/><path fill="#542F8F" d="M310,15.2c0-1.6-0.6-4.1-3.4-4.1c-2.5,0-3.6,2.3-3.8,4.1H310z M302.8,17c0.1,3.4,2.2,4.9,4.7,4.9c1.8,0,2.9-0.3,3.8-0.7l0.4,1.8c-0.9,0.4-2.4,0.9-4.5,0.9c-4.2,0-6.7-2.9-6.7-7.1c0-4.2,2.4-7.5,6.4-7.5c4.5,0,5.6,4,5.6,6.6c0,0.5,0,0.9-0.1,1.2H302.8z"/><path fill="#532F8F" d="M120.5,26.6c3.8-7.1,8.1-14.9,13.1-23.9h-1.9c-0.6,0-1.1,0.2-1.5,0.6l-22.6,21.9c-7.7,7.5-18.1,11.7-29.6,11.7c-11.9,0-22.7-4.6-30.5-12.7c0,0-16.6-16.1-16.8-16.3c-3.2-3.1-7.6-5.2-12.6-5.3H4.7c-1.2,0-2.1,1-2.1,2.2v29.7c7,5.1,14,9.5,21.3,13c1.8-2.8,4.9-4.7,8.3-4.7c8.4,0,14.8,6.2,20.5,11.7C71.3,54.3,109.5,47.2,120.5,26.6"/><path fill="#532F8F" d="M66.3,66.9c3.9,3.1,7.6,5.3,11.8,5.3c7.6,0,13.8-7.1,21.9-14.4c3.1-2.8,6.3-6.2,9.9-9.1c-2.6,0.2-5.3,0.6-8,1.3C87.9,53.4,75.6,58.5,66.3,66.9"/><path fill="#532F8F" d="M146.1,7.9c0.6-1.4,1.2-2.7,1.9-3.9c-1-0.6-2.2-1-3.4-1.2c-11.1,10.1-19.4,23.6-20.5,40c5.4,0.1,9.8,4.7,9.8,10.3v0.7v12.5c0,6.1,4.8,11,10.6,11h4.6c0.5,0,1,0,1.5,0c0.5,0,0.9,0,0.9,0l0,0c1.2,0,2.1-1,2.1-2.2V39.3C146.8,30.8,142.3,17.5,146.1,7.9"/><path fill="#532F8F" d="M2.6,59.8v6.6c0,6.1,4.8,11,10.6,11h4.1l2.8,0c1.2,0,2.1-1,2.1-2.2l0-14c-1.8-1.4-3.9-2.4-6.3-2.9C11.6,57.3,7.3,57.7,2.6,59.8"/><path fill="#16BECE" d="M101.9,49.9c2.7-0.7,5.4-1.1,8-1.3c4.1-3.3,8.7-5.8,14.1-5.8c0.1,0,0.1,0,0.2,0c1.1-16.5,9.3-30,20.5-40c-0.5-0.1-1-0.1-1.6-0.1h-9.4c-5,9-9.3,16.8-13.1,23.9c-11,20.6-49.2,27.7-67.7,27.9c1.2,1.1,2.3,2.3,3.5,3.3c3.6,3.3,6.9,6.6,10.1,9.1C75.6,58.5,87.9,53.4,101.9,49.9"/><path fill="#16BECE" d="M2.6,59.8c4.7-2.1,9-2.5,13.4-1.5c2.4,0.5,4.4,1.5,6.3,2.9l0-7.9c0-2.1,0.6-4.1,1.7-5.7c-7.3-3.4-14.3-7.9-21.3-13V59.8z"/><path fill="#16BECE" d="M153.6,12.3c0-0.1,0-0.2,0-0.3c-0.1-0.4-0.2-0.9-0.3-1.3c0,0,0-0.1,0-0.1c-0.1-0.4-0.2-0.8-0.4-1.1c0-0.1-0.1-0.2-0.1-0.3c-0.2-0.4-0.4-0.8-0.6-1.1c0-0.1-0.1-0.1-0.1-0.2c-0.2-0.3-0.4-0.6-0.6-0.9c-0.1-0.1-0.2-0.2-0.2-0.3c-0.2-0.3-0.5-0.6-0.8-0.9c-0.1-0.1-0.2-0.2-0.3-0.3c-0.2-0.2-0.4-0.4-0.7-0.6c-0.1-0.1-0.3-0.2-0.4-0.3c-0.3-0.2-0.6-0.4-0.9-0.6c0,0-0.1,0-0.1-0.1c-0.7,1.2-1.4,2.5-1.9,3.9c-3.8,9.6,0.7,22.9,7.6,31.4V13.6C153.7,13.2,153.6,12.7,153.6,12.3"/></g></svg>
+      <div class="div"></div>
+      <img src="assets/hike-logo-blue.png" alt="Hike Medical">
+    </div>
+    <a class="cta-mini" href="#">Get Your Custom Insoles →</a>
+  </div>
+
+  <div class="hero">
+    <div class="hero-grid">
+      <div>
+        <h1>Step into comfort with your new wellness benefit.</h1>
+        <p class="sub">Hike custom insoles are designed for your comfort, budget, and convenience.</p>
+        <a class="cta" href="#">Get Your Custom Insoles →</a>
+        <div class="cta-note">Available to every eligible employee at the Company.</div>
+      </div>
+      <div class="hero-img">
+        <img src="https://cdn.prod.website-files.com/696399c9f54a10fcd0b6cb3f/6a613990cce0bb07475d045b_Product%20image.png" alt="Hike Medical custom insole with shoe and app scan flow">
+      </div>
+    </div>
+  </div>
+
+  <section class="hairline" style="padding-top:32px; padding-bottom:40px;">
+    <div class="split-head">
+      <h2>Two ways to get started</h2>
+    </div>
+    <div class="segments">
+      <div class="seg-panel primary">
+        <div class="seg-tag">If you're enrolled in a BCBSMA plan</div>
+        <ul class="seg-list">
+          <li>Each year, your coverage already includes <strong>$300</strong> for orthopedic shoes and foot orthotics (up to a <strong>$2,000 lifetime maximum</strong>).</li>
+          <li>Starting in 2027, you can also leverage this benefit with Hike Medical for <strong>up to 2 pairs of custom insoles at $120 each</strong>.</li>
+          <li>Eligible dependents on the plan also have access to the same benefit.</li>
+          <li>Depending on your deductible, coinsurance and out-of-pocket maximum at the time of ordering, you may pay some or all of that $120 per pair, with the rest billed to insurance.</li>
+        </ul>
+      </div>
+      <div class="seg-panel secondary">
+        <div class="seg-tag">Not enrolled in a BCBSMA plan</div>
+        <ul class="seg-list">
+          <li>You still have access to Hike custom insoles through the Company's partnership, at <strong>$120 per pair, up to 2 pairs a year</strong>.</li>
+          <li>Save <strong>50–90%</strong> versus the typical clinical prices of <strong>$300–$1,000</strong>.</li>
+          <li>Paid directly to Hike, with no claims or paperwork required.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="hairline" style="padding-top:40px; padding-bottom:40px;">
+    <div class="split-head" style="margin-bottom:12px;">
+      <h2>Why Hike</h2>
+    </div>
+    <div class="e-wrap" style="padding:0;">
+      <div class="e-flow">
+        <div class="e-tile e-tile-scan">
+          <img src="https://cdn.prod.website-files.com/696399c9f54a10fcd0b6cb3f/6aac9d49d1b6681644f36d24_New%20Scan%20Graphic.png" alt="Hike scan graphic showing a phone scanning a foot">
+        </div>
+        <div class="e-tile e-tile-stat66">
+          <div class="e-photo-stat">66%</div>
+          <div class="e-photo-label">saw improvement in muscle &amp; joint symptoms</div>
+        </div>
+        <div class="e-tile e-tile-problem">
+          <div class="e-eyebrow">The Problem</div>
+          <p>When your feet aren't supported, your knees absorb extra stress, your hips compensate, and your lower back tightens to pick up the slack. The fatigue and soreness follows you the rest of the day, affecting everything from your mood to your sleep.</p>
+        </div>
+        <div class="e-tile e-tile-solution">
+          <div class="e-eyebrow">The Solution</div>
+          <p>Custom insoles are built to fit your actual foot shape, helping your body move the way it's meant to, instead of offloading the work up your skeleton.</p>
+        </div>
+        <div class="e-tile e-tile-quote">
+          <span class="e-quote-mark">&#8220;</span>
+          <blockquote>For years I have been dealing with knee pain. The day I went to work with my custom insoles, I felt like a new man! Walking didn't hurt. I felt like I could actually run, and my knee pain disappeared!</blockquote>
+          <div class="who">&mdash; Hike Member</div>
+        </div>
+        <div class="e-tile e-tile-stats">
+          <div><div class="num">53%</div><div class="lbl">reported less pain</div></div>
+          <div><div class="num">54%</div><div class="lbl">reported more energy at work</div></div>
+        </div>
+      </div>
+      <p class="e-survey">Averages based on survey results conducted with a population of Hike members during their first year of using Hike insoles. Timing of respondents' results range from their first ten weeks to their first six months.</p>
+    </div>
+  </section>
+
+  <section class="hairline" style="padding-top:40px;">
+    <div class="resource-head">
+      <h2>Everything you need to know</h2>
+    </div>
+    <div class="tab-switcher">
+      <button class="tab-btn active" id="tabBtnHowto" onclick="setTab('howto')">How It Works</button>
+      <button class="tab-btn" id="tabBtnCompare" onclick="setTab('compare')">How Hike Compares</button>
+    </div>
+
+    <div class="tab-panel active" id="panelHowto">
+      <div class="steps-wrap">
+        <div class="steps-col">
+          <h4>If you're a BCBSMA member</h4>
+          <div class="step"><div class="num">01</div><div class="txt"><b>Verify.</b> Enter your Blue Cross Blue Shield ID. Hike checks your plan in real time.</div></div>
+          <div class="step"><div class="num">02</div><div class="txt"><b>Scan.</b> Capture your feet in a 5-minute scan from your phone.</div></div>
+          <div class="step"><div class="num">03</div><div class="txt"><b>Confirm.</b> See your personalized cost estimate, then a hold is placed on your card while your claim processes. This is not a charge.</div></div>
+          <div class="step"><div class="num">04</div><div class="txt"><b>Delivered.</b> Your custom insoles ship in about 2 weeks while your claim processes in the background.</div></div>
+        </div>
+        <div class="steps-col">
+          <h4>If you're not a BCBSMA member</h4>
+          <div class="step"><div class="num">01</div><div class="txt"><b>Verify.</b> Enter your employee ID.</div></div>
+          <div class="step"><div class="num">02</div><div class="txt"><b>Scan.</b> Capture your feet in a 5-minute scan from your phone.</div></div>
+          <div class="step"><div class="num">03</div><div class="txt"><b>Pay.</b> Pay $120 directly to Hike.</div></div>
+          <div class="step"><div class="num">04</div><div class="txt"><b>Delivered.</b> Your custom insoles ship to your home in about 2 weeks, built just for you.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="panelCompare">
+      <table class="desktop-table">
+        <thead><tr><td></td><td>Hike</td><td>Over the counter</td><td>Traditional custom</td></tr></thead>
+        <tbody>
+          <tr><td>Custom built for you</td><td>✓</td><td>✗</td><td>✓</td></tr>
+          <tr><td>Speed</td><td>5-minute scan</td><td>A trip to the store</td><td>3–4 clinical visits</td></tr>
+          <tr><td>Time commitment</td><td>Delivered in 2 weeks</td><td>Trying on for weeks</td><td>9 weeks end to end</td></tr>
+          <tr><td>Fit guarantee</td><td>Amazing fit or we rebuild for free</td><td>None</td><td>Depends</td></tr>
+          <tr><td>Cost</td><td>$120 per pair</td><td>$20–$200</td><td>$500–$1,000</td></tr>
+        </tbody>
+      </table>
+      <div class="mobile-cards">
+        <div class="m-card"><div class="m-title">Hike</div><div class="m-row"><span>Custom built for you</span><span>✓</span></div><div class="m-row"><span>Speed</span><span>5-min scan</span></div><div class="m-row"><span>Time commitment</span><span>2 weeks</span></div><div class="m-row"><span>Fit guarantee</span><span>Rebuild free</span></div><div class="m-row"><span>Cost</span><span>$120/pair</span></div></div>
+        <div class="m-card"><div class="m-title">Over the counter</div><div class="m-row"><span>Custom built for you</span><span>✗</span></div><div class="m-row"><span>Speed</span><span>A trip to the store</span></div><div class="m-row"><span>Time commitment</span><span>Trying on for weeks</span></div><div class="m-row"><span>Fit guarantee</span><span>None</span></div><div class="m-row"><span>Cost</span><span>$20–$200</span></div></div>
+        <div class="m-card"><div class="m-title">Traditional custom</div><div class="m-row"><span>Custom built for you</span><span>✓</span></div><div class="m-row"><span>Speed</span><span>3–4 clinical visits</span></div><div class="m-row"><span>Time commitment</span><span>9 weeks end to end</span></div><div class="m-row"><span>Fit guarantee</span><span>Depends</span></div><div class="m-row"><span>Cost</span><span>$500–$1,000</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hairline">
+    <div class="resource-head">
+      <h2>Common questions</h2>
+    </div>
+    <div class="faq-columns">
+      <div class="faq-col">
+        <div class="faq-group-label" id="faq-everyone">Everyone</div>
+      <div class="accordion-row">
+        <div class="accordion-head" onclick="toggleFaq(this)">How do I scan my feet? <span>+</span></div>
+        <div class="accordion-body">Use any mobile device to scan your feet, no app download required. Keep the foot centered and glide the camera from side to side. Watch the walkthrough below.
+          <div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/BR-3akjv53g" title="How to scan your feet with Hike" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+        </div>
+      </div>
+      <div class="accordion-row">
+        <div class="accordion-head" onclick="toggleFaq(this)">Who is eligible? <span>+</span></div>
+        <div class="accordion-body">All benefits-eligible employees at the Company, whether or not you're enrolled in a Blue Cross Blue Shield of Massachusetts medical plan through the Company. If you're enrolled in a BCBSMA plan through the Company, your eligible dependents are included too. If you're not enrolled in a BCBSMA plan through the Company, only you as the employee can access the benefit, not your dependents. Employees based outside the U.S., including Puerto Rico, are not eligible to participate.</div>
+      </div>
+      <div class="accordion-row">
+        <div class="accordion-head" onclick="toggleFaq(this)">How is this different from store-bought insoles? <span>+</span></div>
+        <div class="accordion-body">Drugstore inserts are molded once, for an average foot, and sold to millions of different feet. They flatten out fast and were never shaped for you in the first place.</div>
+      </div>
+      <div class="accordion-row">
+        <div class="accordion-head" onclick="toggleFaq(this)">How is this different from getting custom insoles through a specialist? <span>+</span></div>
+        <div class="accordion-body">Getting truly custom insoles through a specialist means $500 to $1,000 and months of waiting. Hike delivers the same clinical-grade result from a 5-minute scan, delivered to your door in about two weeks.</div>
+      </div>
+      <div class="accordion-row">
+        <div class="accordion-head" onclick="toggleFaq(this)">Can my dependents use this benefit too? <span>+</span></div>
+        <div class="accordion-body">For BCBSMA members: yes, covered dependents under your BCBSMA plan are eligible. For Not BCBSMA members: no, only eligible employees can access the benefit.</div>
+      </div>
+      <div class="accordion-row">
+        <div class="accordion-head" onclick="toggleFaq(this)">Can I use my HSA? <span>+</span></div>
+        <div class="accordion-body">Yes. HSA funds typically cover custom insoles as an eligible medical expense. Confirm your plan's specifics with your HSA administrator.</div>
+      </div>
+      <div class="accordion-row">
+        <div class="accordion-head" onclick="toggleFaq(this)">Can I use my FSA? <span>+</span></div>
+        <div class="accordion-body">It depends on your FSA plan and how your administrator defines eligible expenses. Confirm with your FSA administrator before completing your purchase.</div>
+      </div>
+      </div>
+      <div class="faq-col faq-col-stacked">
+        <div class="faq-group-label" id="faq-bcbsma">If you're a BCBSMA member</div>
+      <div class="accordion-row">
+        <div class="accordion-head" onclick="toggleFaq(this)">How does this work with my BCBSMA plan? <span>+</span></div>
+        <div class="accordion-body">Hike submits claims directly to Blue Cross Blue Shield. Like other covered services, your deductible and coinsurance may apply.</div>
+      </div>
+      <div class="accordion-row">
+        <div class="accordion-head" onclick="toggleFaq(this)">Will I know my cost before I order? <span>+</span></div>
+        <div class="accordion-body">Hike checks your plan in real time and shows you a cost estimate based on your deductible, coinsurance and out-of-pocket maximum at checkout. A hold is placed on your card, not a charge. Your plan's $300 annual and $2,000 lifetime maximum for orthopedic shoes and foot orthotics factors into your final cost once Blue Cross Blue Shield processes your claim, typically within 7 days, so your final amount could differ from the estimate shown before you order.</div>
+      </div>
+      <div class="accordion-row">
+        <div class="accordion-head" onclick="toggleFaq(this)">What determines what I pay? <span>+</span></div>
+        <div class="accordion-body">Three things: your deductible (what you pay before your plan starts contributing), your coinsurance (the percentage you share after that), and your out-of-pocket maximum (the most you'll pay in a plan year before your plan covers the rest in full). Here's how those apply to a $120 pair:
+          <ul>
+            <li><b>Already met your deductible and out-of-pocket max?</b> You pay nothing. Your plan covers the full $120.</li>
+            <li><b>Met your deductible, but not your out-of-pocket max?</b> You pay your coinsurance share. For example, at 20% coinsurance, you'd pay $24 and your plan covers the remaining $96.</li>
+            <li><b>Haven't met your deductible yet?</b> You pay the full $120, and it counts toward your deductible.</li>
+            <li><b>Partway through your deductible?</b> You pay what's left on your deductible, plus coinsurance on the rest. For example, with $100 left on your deductible: you'd pay that $100, plus 20% of the remaining $20 ($4), for $104 total. Your plan covers the last $16.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-row">
+        <div class="accordion-head" onclick="toggleFaq(this)">What if I've already used my $300 annual or $2,000 lifetime orthotics maximum? <span>+</span></div>
+        <div class="accordion-body">These maximums apply to all orthopedic shoes and foot orthotics under your plan, not just Hike, so it's possible to reach either one before you order. To confirm your remaining balances towards the annual $300 and $2,000 lifetime max, reach out to Blue Cross Blue Shield Member Support. If you order through Hike and have already reached your annual or lifetime limits, you will be responsible to pay for any remaining cost identified after your claim is processed by Blue Cross Blue Shield.</div>
+      </div>
+      <div class="accordion-row">
+        <div class="accordion-head" onclick="toggleFaq(this)">Will my order be delayed while my claim processes? <span>+</span></div>
+        <div class="accordion-body">No. Hike ships your insoles as planned while the claim processes in the background.</div>
+      </div>
+        <div class="faq-group-label stacked-second" id="faq-not-bcbsma">If you're not a BCBSMA member</div>
+      <div class="accordion-row">
+        <div class="accordion-head" onclick="toggleFaq(this)">What if I'm not enrolled in a BCBSMA medical plan through the Company? <span>+</span></div>
+        <div class="accordion-body">Custom insoles are still available to you directly through Hike, at $120 per pair, up to 2 pairs a year. Paid directly to Hike, no claims or paperwork required.</div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:40px;">
+    <p class="disclaimer">Eligibility to receive Hike Custom Insoles is subject to the agreement between your organization and Hike Medical, including your current employment and/or membership status. Questions? Contact your benefits administrator or support@hikemedical.com.</p>
+  </section>
+
+</div>
+
+<script>
+  function setTab(name) {
+    ['howto', 'compare'].forEach(function (t) {
+      var cap = t.charAt(0).toUpperCase() + t.slice(1);
+      document.getElementById('panel' + cap).classList.toggle('active', t === name);
+      document.getElementById('tabBtn' + cap).classList.toggle('active', t === name);
+    });
+  }
+  function toggleFaq(head) {
+    var row = head.closest('.accordion-row');
+    var wasOpen = row.classList.contains('open');
+    row.classList.toggle('open', !wasOpen);
+    head.querySelector('span').textContent = !wasOpen ? '×' : '+';
+  }
+</script>
+</body>
+</html>
