@@ -4,7 +4,8 @@
     { file: 'website-listing.html', label: 'Website Listing' },
     { file: 'custom-insoles.html', label: 'Benefit Portal' },
     { file: 'flyer.html', label: 'Flyer' },
-    { file: 'powerpoint.html', label: 'PowerPoint' }
+    { file: 'powerpoint.html', label: 'PowerPoint' },
+    { file: 'landing-page.html', label: 'Landing Page' }
     // add one entry per new asset page, in hub display order
   ];
 
