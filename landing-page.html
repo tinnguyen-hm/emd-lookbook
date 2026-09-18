@@ -6,6 +6,7 @@
 <title>EMD Landing Page — Wireframe Mockup v6</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 <style>
   :root {
     color-scheme: light;
@@ -183,6 +184,7 @@
 </style>
 </head>
 <body>
+<div class="subpage-bar" style="max-width:none; padding:14px 24px;"><a href="index.html">← Back to Lookbook</a></div>
 <div class="page">
 
   <div class="topbar">
@@ -412,5 +414,11 @@
     head.querySelector('span').textContent = !wasOpen ? '×' : '+';
   }
 </script>
+<div style="max-width:1100px; margin:0 auto; padding:0 24px 64px;">
+  <div id="comments-root" data-page="landing-page"></div>
+</div>
+<script src="js/comments-config.js"></script>
+<script src="js/comments.js"></script>
+<script src="js/nav.js"></script>
 </body>
 </html>
