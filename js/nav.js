@@ -5,7 +5,7 @@
     { file: 'custom-insoles.html', label: 'Benefit Portal' },
     { file: 'flyer.html', label: 'Flyer' },
     { file: 'powerpoint.html', label: 'PowerPoint' },
-    { file: 'landing-page.html', label: 'Landing Page' }
+    { file: 'https://web.hikemedical.com/benefits4me', label: 'Landing Page' }
     // add one entry per new asset page, in hub display order
   ];
 
